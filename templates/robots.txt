@@ -3,4 +3,4 @@ Disallow: /accounts/
 Disallow: /basket/
 Disallow: /checkout/
 Disallow: /wishlist/
-Sitemap: https://sensical-ireland.herokuapp.com/sitemap.xml
+Sitemap: https://jasmine-boutique.herokuapp.com/sitemap.xml

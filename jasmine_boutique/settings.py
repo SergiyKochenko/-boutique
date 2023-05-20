@@ -28,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = ')*=36fg+2f(4m)k4=%*)6y)ekei4u-ay^m2wya-!kph-gb*d^w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-sergiykochenko-boutique-gtztay6t46m.ws-eu97.gitpod.io', 'localhost', 'jasmine-boutique.herokuapp.com']
 
