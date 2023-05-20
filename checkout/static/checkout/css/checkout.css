@@ -1,0 +1,179 @@
+.StripeElement,
+.StripeElement, .stripe-style-input {
+  height: 44px;
+  padding: 10px 12px;
+  border-radius: 0;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  box-shadow: 0 2px 3px 0 #75e6ff;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #e6ebf1 !important;
+}
+
+.stripe-style-input::placeholder {
+    color: #424b54;
+}
+
+.fieldset-label {
+    position: relative;
+    right: .5rem;
+}
+
+#payment-form .form-control,
+#card-element {
+    color: #000;
+    background-color: white;
+}
+
+#loading-overlay {
+	display: none;
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(117, 230, 255, .93);
+    z-index: 9999;
+}
+
+.spinner {
+    border-radius: 50%;
+    background-color:#0c2d6c;
+    width: 20%;
+    border: white solid 2px;
+    margin-bottom: 2rem;
+}
+
+.loading-spinner {
+  color: #0c2d6c;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100%;
+}
+
+.panel-title:hover {
+  color: #0c2d6c;
+  border: 1px solid #75e6ff;
+  cursor: pointer;
+  background-color: #75e6ff;
+}
+
+.panel-title {
+  border: 1px solid white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.email-conf {
+  width: 60%;
+  margin-left: 20%;
+}
+
+.email-rule {
+  width: 90%;
+  border-color: white;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.payment-strip {
+  border: 1px solid;
+  padding-top: 1rem;
+}
+
+.checkout-item-container {
+  border: 1px solid #fff;
+  padding: 0.5rem;
+}
+
+.checkout-item-details {
+  display: flex;
+  align-items: center;
+}
+
+.checkout-image-container {
+  width: 100px;
+  height: 100px;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+
+}
+
+.checkout-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.payment-container {
+  margin-left: 4rem;
+}
+
+.checkout-card-icons {
+  justify-content: end;
+  display: flex;
+  font-size: xx-large;
+}
+
+@media screen and (max-width: 991px) {
+  .email-conf {
+    width: 70%;
+    margin-left: 15%;
+  }
+  .payment-container {
+    margin-left: 0;
+  }
+  .checkout-card-icons {
+    justify-content: center;
+}
+  }
+
+@media screen and (max-width: 767px) {
+  .checkout-item-details {
+    display: block;
+  }
+  .checkout-item-container {
+    border: 1px solid #fff;
+    padding: 0.5rem;
+    width: 60%;
+  }
+  .checkout-image-container {
+    width: 100%;
+    height: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .checkout-img {
+    width: 230px;
+    height: 230px;
+  }
+  }
+
+@media screen and (max-width: 600px) {
+  .email-conf {
+    width: 100%;
+    margin-left: 0;
+  }
+  .checkout-item-container {
+    border: 1px solid #fff;
+    padding: 0.5rem;
+    width: 70%;
+  }
+@media screen and (max-width: 600px) {
+  .checkout-item-container {
+    border: 1px solid #fff;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  .checkout-card-icons {
+    font-size: large;
+  }
+  }
+  }

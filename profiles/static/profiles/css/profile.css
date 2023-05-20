@@ -1,0 +1,14 @@
+
+.panel-title {
+    border: 1px solid white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.panel-title:hover {
+    cursor: pointer;
+    color: #0c2d6c;
+    border: 1px solid #0c2d6c;
+    background-color:#75e6ff;
+}

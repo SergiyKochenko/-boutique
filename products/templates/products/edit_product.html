@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Add Product Form -->
+
+{% block extra_title %} - Edit Product{% endblock %}
+
+
+{% block content %}
+
+    <!-- User Authentication & Authorisation -->
+
+    {% if user.is_superuser %}
+
+    <!-- Form Heading -->
+    
+    <div class="container auth-container">
+        <div class="row">
+            <div class="col-12 mt-4">
+                <h1 class="text-center"><span class="sr-only">List Icon</span><i class="fa-solid fa-list-check"></i></h1>
+                <h2 class="logo-font mb-4 text-center ">Product Management</h2>
+                <h3 class="text-light text-center">Edit a Product</h3> 
+                <hr class="section-rule">
+            </div>
+        </div>
+
+        <!-- Product Form -->
+
+        <div class="row">
+            <div class="col-12">
+                <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <div class="text-right">
+                        <a class="sensical-button" href="{% url 'products' %}">Cancel</a>
+                        <button class="sensical-button" type="submit">Update Product</button>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </div>
+    {% else %}
+
+    <!-- If Not Authorised -->
+
+    <div class="auth-buffer"></div>
+    <div class="container auth-container">
+    <h1 class="mt-4 text-center"><i class="fa-solid fa-circle-exclamation"></i></h1>
+    <h3 class="text-center" >You are unauthorised to view this page.</h3>
+    <h3 class="text-center" >Please <a class="text-light font-italic" href="{% url 'account_login' %}">login</a> to visit the product management page.</h3>
+    </div>
+    {% endif %}
+{% endblock %}

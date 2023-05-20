@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+{% load basket_tools %}
+
+<!-- Shopping Basket Page -->
+
+{% block extra_title %} - Basket{% endblock %}
+
+{% block content %}
+
+<!-- Heading -->
+
+<div class="basket-bg container">
+    
+    <div class="row">
+        <div class="col-12 text-center mt-3">
+            <h2>My Shopping Basket</h2> 
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <p class="mb-0 item-count-header">{{ item_count }} items in basket</p>
+        </div>
+    </div>
+
+    <!-- Shopping Basket Items -->
+
+    <div class="row center-row">
+        <div class="col-sm-12 col-md-7 mb-3 basket-col">
+            <div class="row mb-4">
+                {% if basket_items %}
+                    {% for item in basket_items %}
+                    <div class="container-fluid basket-item-container mb-5">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-3">
+                                <div class="text-center">
+                                    <div class="basket-image-container">
+                                        <img class="basket-img" src="{{ item.product.image.url }}" alt="product image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-9 basket-item-details">
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-4">
+                                        <h3 class="my-2 basket-heading">{{ item.product.name }}</h3>
+                                        <p class="mb-2">€{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                        <p class="mb-2">Qty: {{ item.quantity }}</p>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-8">
+                                        <form class="form update-form" method="POST" action="{% url 'update_basket' item.item_id %}">
+                                            {% csrf_token %}
+                                            <div>
+                                                <div class="input-group-selector">
+                                                    <label><small>Quantity:</small></label>
+                                                    <select class="form-control custom-select"
+                                                    name="quantity" 
+                                                    data-item_id="{{ item.item_id }}"
+                                                    id="id_qty_{{ item.item_id }}">
+                                                        <option value="{{ item.quantity }}" selected hidden>{{ item.quantity }}</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                    </select>
+                                                </div>
+                                                <input class="fa-input sensical-button text-center rounded-0 text-uppercase" type="submit" value="&#xf291; update basket">
+                                            </div>
+                                        </form>
+                                        <form class="form update-form" method="POST" action="{% url 'remove_item' item.item_id %}">
+                                            {% csrf_token %}
+                                            <div>
+                                                <div class="input-group-selector">
+                                                    <input class="fa-input sensical-button text-center rounded-0 text-uppercase" type="submit" value="&#xf2ed; remove from basket">
+                                                </div>    
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                <!-- No Items In Basket -->
+
+                {% else %}
+                    <div class="col-12 text-center basket-empty">
+                        <h3>Empty Basket!</h3>
+                        <p>Looks like you haven't added anything to your basket.</p>
+                        <p>Click below to continue browsing our quality, affordable range.</p>
+                        <a href="{% url 'products' %}" class="sensical-button text-center rounded-0 mt-2">
+                            <span class="icon"><i class="fa-solid fa-circle-arrow-left"></i></span>
+                            <span class="text-uppercase">Find Some Products!</span>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Basket Summary and Action Buttons -->
+
+        <div class="col-sm-12 col-md-4 text-center">
+            <div class="basket-checkout text-center mb-2">
+                <a href="{% url 'products' %}">
+                <div class="basket-back-button basket-button"><i class="icon fa-solid fa-circle-arrow-left"></i>back to shopping</div>
+                </a>
+            </div>
+            <div class="basket-checkout text-center my-2">
+                <h3 class="checkout-heading py-2">BASKET SUMMARY</h3>
+            </div>
+            <div class="row checkout-row pt-4 mt-2">
+                <div class="col text-left">
+                    <p><strong>Items:</strong></p>
+                </div>
+                <div class="col text-right">
+                    <span>{{ item_count }}</span>
+                </div>
+            </div>
+            <div class="row checkout-row">
+                <div class="col text-left">
+                    <p><strong>Sub-total:</strong></p>
+                </div>
+                <div class="col text-right">
+                    <span>€{{ total|floatformat:2 }}</span>
+                </div>
+            </div>
+            <div class="row checkout-row">
+                <div class="col text-left">
+                    <p><strong>Delivery:</strong></p>
+                </div>
+                <div class="col text-right">
+                    <span>€{{ delivery|floatformat:2 }}</span>
+                </div>
+            </div>
+            <div class="row checkout-row">
+                <div class="col text-left">
+                    <p><strong>Total:</strong></p>
+                </div>
+                <div class="col text-right">
+                    <span>{{ grand_total|floatformat:2 }}</span>
+                </div>
+            </div>
+            <div class="basket-checkout text-center my-2">
+                <a href="{% url 'checkout' %}">
+                    <div class="basket-button"><i class="fa-solid fa-lock"></i>Secure Checkout</div>
+                </a>
+            </div>
+        </div>
+    </div> 
+</div>
+{% endblock content %}
