@@ -1,1 +1,1 @@
-Sensical Confirmation for Order Number {{ order.order_number }}
+Jasmine Confirmation for Order Number {{ order.order_number }}
